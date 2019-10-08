@@ -4,11 +4,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+import '../constant.dart';
+
 class DatabaseProvider {
   static final DatabaseProvider databaseProvider = DatabaseProvider();
   Database _database;
 
-  final todoTable = 'Todo';
 
   Future<Database> get database async {
     if (_database != null) return _database;
@@ -27,7 +28,7 @@ class DatabaseProvider {
   }
 
   FutureOr<void> initDb(Database db, int version) async {
-    await db.execute("CREATE TABLE $todoTable ("
+    await db.execute("CREATE TABLE $TODO_TABLE ("
         "id INTEGER PRIMARY KEY, "
         "description TEXT, "
         "is_done INTEGER "
